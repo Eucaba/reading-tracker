@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -19,11 +20,13 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private UUID userId;
+    private LocalDate creationDate;
+    private LocalDate lastUpdateDate;
     private int rating;
     private String title;
     private String comment;
 
+    // Direct relationships:
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
@@ -32,6 +35,6 @@ public class Review {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // TODO: pendiente detalles de cada columna
+    // TODO: pendiente detalles de cada columna, @ManyToOne(fetch = FetchType.LAZY)
     //p.e. @Column(nullable = false), @Column(unique = true, nullable = false)
 }

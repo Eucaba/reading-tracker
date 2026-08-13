@@ -32,6 +32,7 @@ public class Book {
 
     // Junction tables
     @ManyToMany
+    //FetchType.LAZY by default.
     @JoinTable(name = "jt_book_author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
@@ -43,7 +44,21 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "translator_id"))
     private Set<Translator> translators = new HashSet<>();
 
-    // TODO: pendiente detalles de cada columna
+    @ManyToMany
+    @JoinTable(name = "jt_book_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private Set<BookGenre> genres = new HashSet<>();
+
+    // Direct relationships:
+    @OneToMany(mappedBy = "book")
+    //FetchType.LAZY by default.
+    private Set<Review> reviews = new HashSet<>();
+
+    @OneToMany(mappedBy = "book")
+    private Set<Reading> readings = new HashSet<>();
+
+    // TODO: pendiente detalles de cada columna, @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     //p.e. @Column(nullable = false), @Column(unique = true, nullable = false)
 
 }

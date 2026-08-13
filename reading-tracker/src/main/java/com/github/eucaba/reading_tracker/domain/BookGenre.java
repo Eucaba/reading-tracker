@@ -17,18 +17,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class BookGenre {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String username;
-    // TODO complete User
+    private String name;
 
-
-    // Direct relationships:
-    @OneToMany(mappedBy = "user")
-    private Set<Reading> readings = new HashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    private Set<Review> reviews = new HashSet<>();
+    // Junction tables
+    @ManyToMany(mappedBy = "genres")
+    private Set<Book> books = new HashSet<>();
 }
