@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-//@Table(name="")
+@Table(name="translator")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,16 +20,16 @@ import java.util.UUID;
 public class Translator {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false)
     private UUID id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String lastName;
 
-    // Junction tables
+    //// Junction tables
     @ManyToMany(mappedBy = "translators")
     private Set<Book> books = new HashSet<>();
-
-
-    // TODO: pendiente detalles de cada columna
-    //p.e. @Column(nullable = false), @Column(unique = true, nullable = false)
-
 }

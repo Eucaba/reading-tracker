@@ -12,23 +12,26 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-//@Table(name="")
+@Table(name="app_user")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false)
     private UUID id;
+
+    @Column(nullable = false, unique = true)
     private String username;
     // TODO complete User
 
 
-    // Direct relationships:
-    @OneToMany(mappedBy = "user")
+    //// Direct relationships:
+    @OneToMany(mappedBy = "appUser")
     private Set<Reading> readings = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "appUser")
     private Set<Review> reviews = new HashSet<>();
 }

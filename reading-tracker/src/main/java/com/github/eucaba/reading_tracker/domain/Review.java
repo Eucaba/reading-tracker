@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-//@Table(name="")
+@Table(name="review")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -19,22 +19,28 @@ import java.util.UUID;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false)
     private UUID id;
+
+    @Column(nullable = false)
     private LocalDate creationDate;
+
     private LocalDate lastUpdateDate;
+
+    @Column(nullable = false)
     private int rating;
+
     private String title;
+
     private String comment;
 
-    // Direct relationships:
-    @ManyToOne
-    @JoinColumn(name = "book_id")
+    //// Direct relationships:
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "app_user_id", nullable = false)
+    private AppUser appUser;
 
-    // TODO: pendiente detalles de cada columna, @ManyToOne(fetch = FetchType.LAZY)
-    //p.e. @Column(nullable = false), @Column(unique = true, nullable = false)
 }

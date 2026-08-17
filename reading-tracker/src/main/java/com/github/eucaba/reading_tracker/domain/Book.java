@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-//@Table(name="")
+@Table(name="book")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,16 +21,26 @@ import java.util.UUID;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false)
     private UUID id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false, unique = true)
     private String isbn;
+
     private String editorial;
+
     private LocalDate publicationDate;
+
     @Enumerated(EnumType.STRING)
     private BookFormat format;
+
+    @Column(nullable = false)
     private int pages;
 
-    // Junction tables
+    //// Junction tables
     @ManyToMany
     //FetchType.LAZY by default.
     @JoinTable(name = "jt_book_author",
@@ -50,15 +60,13 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<BookGenre> genres = new HashSet<>();
 
-    // Direct relationships:
-    @OneToMany(mappedBy = "book")
-    //FetchType.LAZY by default.
+    //// Direct relationships:
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    //OneToMany: FetchType.LAZY by default.
+    //CascadeType.ALL propagates ALL persistance operations from parent to child.
+    //OrphanRemoval detects all orphans and avoids invalid registers in jt tables.
     private Set<Review> reviews = new HashSet<>();
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Reading> readings = new HashSet<>();
-
-    // TODO: pendiente detalles de cada columna, @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
-    //p.e. @Column(nullable = false), @Column(unique = true, nullable = false)
-
 }

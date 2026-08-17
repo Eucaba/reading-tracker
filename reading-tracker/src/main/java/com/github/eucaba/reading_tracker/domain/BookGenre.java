@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-//@Table(name="")
+@Table(name="book-genre")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,10 +20,13 @@ import java.util.UUID;
 public class BookGenre {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(nullable = false)
     private UUID id;
+
+    @Column(nullable = false)
     private String name;
 
-    // Junction tables
+    //// Junction tables
     @ManyToMany(mappedBy = "genres")
     private Set<Book> books = new HashSet<>();
 }
