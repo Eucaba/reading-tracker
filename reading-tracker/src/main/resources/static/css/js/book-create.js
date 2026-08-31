@@ -1,0 +1,1 @@
+// Copyright (C) 2026 Eugenia Cames. Personal/portfolio project. All rights reserved.
