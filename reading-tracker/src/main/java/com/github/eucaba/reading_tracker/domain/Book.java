@@ -30,7 +30,7 @@ public class Book {
     @Column(nullable = false, unique = true)
     private String isbn;
 
-    private String editorial;
+    private String publisher;
 
     private LocalDate publicationDate;
 
