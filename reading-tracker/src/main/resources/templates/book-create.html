@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="text-primary">Test</h1>
+        <form th:action="@{/books/new}" th:object="${book}" method="post">
+            <input type="text" th:field="*{title}" placeholder="título del libro" />
+            <input type="text" th:field="*{isbn}" placeholder="ISBN del libro" />
+            <input type="text" th:field="*{publisher}" placeholder="editorial del libro" />
+            <input type="number" th:field="*{pages}" placeholder="pages del libro" />
+            <input type="date" th:field="*{publicationDate}" placeholder="publicationDate del libro" />
+            <input type="text" th:field="*{author.name}" placeholder="author name del libro" />
+            <input type="text" th:field="*{author.lastName}" placeholder="author lastName del libro" />
+            <input type="text" th:field="*{translator.name}" placeholder="translator name del libro" />
+            <input type="text" th:field="*{translator.lastName}" placeholder="autranslatorthor lastName del libro" />
+            <input type="radio" name="bookFormat" value ="HARDCOVER" th:field="*{format}" placeholder="format del libro" />
+            <input type="radio" name="bookFormat" value ="PAPERBACK" th:field="*{format}" placeholder="format del libro" />
+            <input type="radio" name="bookFormat" value ="EBOOK" th:field="*{format}" placeholder="format del libro" />
+
+
+
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
