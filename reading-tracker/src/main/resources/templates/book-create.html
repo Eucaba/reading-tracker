@@ -10,19 +10,31 @@
 
     <div class="container mt-5">
         <h1 class="text-primary">Test</h1>
-        <form th:action="@{/books/new}" th:object="${book}" method="post">
+        <form th:action="@{/books/new}" th:object="${bookDto}" method="post">
             <input type="text" th:field="*{title}" placeholder="título del libro" />
             <input type="text" th:field="*{isbn}" placeholder="ISBN del libro" />
             <input type="text" th:field="*{publisher}" placeholder="editorial del libro" />
             <input type="number" th:field="*{pages}" placeholder="pages del libro" />
             <input type="date" th:field="*{publicationDate}" placeholder="publicationDate del libro" />
-            <input type="text" th:field="*{author.name}" placeholder="author name del libro" />
-            <input type="text" th:field="*{author.lastName}" placeholder="author lastName del libro" />
-            <input type="text" th:field="*{translator.name}" placeholder="translator name del libro" />
-            <input type="text" th:field="*{translator.lastName}" placeholder="autranslatorthor lastName del libro" />
-            <input type="radio" name="bookFormat" value ="HARDCOVER" th:field="*{format}" placeholder="format del libro" />
-            <input type="radio" name="bookFormat" value ="PAPERBACK" th:field="*{format}" placeholder="format del libro" />
-            <input type="radio" name="bookFormat" value ="EBOOK" th:field="*{format}" placeholder="format del libro" />
+            <input type="text" th:field="*{authors[0].name}" placeholder="author name del libro" />
+            <input type="text" th:field="*{authors[0].lastName}" placeholder="author lastName del libro" />
+            <input type="text" th:field="*{authors[1].name}" placeholder="author name del libro" />
+            <input type="text" th:field="*{authors[1].lastName}" placeholder="author lastName del libro" />
+            <input type="text" th:field="*{authors[2].name}" placeholder="author name del libro" />
+            <input type="text" th:field="*{authors[2].lastName}" placeholder="author lastName del libro" />
+            <input type="text" th:field="*{authors[3].name}" placeholder="author name del libro" />
+            <input type="text" th:field="*{authors[3].lastName}" placeholder="author lastName del libro" />
+            <input type="text" th:field="*{authors[4].name}" placeholder="author name del libro" />
+            <input type="text" th:field="*{authors[4].lastName}" placeholder="author lastName del libro" />
+            <input type="text" th:field="*{translators[0].name}" placeholder="translator name del libro" />
+            <input type="text" th:field="*{translators[0].lastName}" placeholder="autranslatorthor lastName del libro" />
+            <input type="text" th:field="*{translators[1].name}" placeholder="translator name del libro" />
+            <input type="text" th:field="*{translators[1].lastName}" placeholder="autranslatorthor lastName del libro" />
+            <input type="text" th:field="*{translators[2].name}" placeholder="translator name del libro" />
+            <input type="text" th:field="*{translators[2].lastName}" placeholder="autranslatorthor lastName del libro" />
+            <input type="radio" value ="HARDCOVER" th:field="*{format}" placeholder="format del libro" />
+            <input type="radio" value ="PAPERBACK" th:field="*{format}" placeholder="format del libro" />
+            <input type="radio" value ="EBOOK" th:field="*{format}" placeholder="format del libro" />
 
 
 
