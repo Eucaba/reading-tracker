@@ -5,40 +5,52 @@ import com.github.eucaba.reading_tracker.dto.BookDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/books")
 public class BookController {
 
+    //private final BookService bookService;
+    //public BookController(BookService bookService) {
+    //this.bookService = bookService;
+    //}
+
+    //CRUD
+    // GET forms and views
     @GetMapping("/new")
-    public String getBookCreateForm(Model model) {
-
-        BookDto bookDto = new BookDto();
+    public String showCreateForm(Model model)
+    {
+        BookDto bookDto = BookDto.test();
         model.addAttribute("bookDto", bookDto);
-
         return "book-create";
     }
 
-    /*
-    // GET /books -> Lista los libros
-    @GetMapping
-    public String listBooks(Model model) {
-        return "book-list";
+    // POST resources (i.e. book)
+    @PostMapping("/new")
+    public String createBook(@ModelAttribute BookDto bookDto) // @ModelAttribute for Data binding
+    {
+
+        return "index";
     }
 
-    @PostMapping
-public String saveBook(@ModelAttribute Book book) {
-    // 1. Guardar el libro en la base de datos
-    // 2. Redirigir para evitar el reenvío duplicado del formulario
-    return "redirect:/books";
-}
+    // GET resources (book, books...)
+    // PUT/PATCH resources
+    // DELETE resources
+    // private methods
 
-    // POST /books -> Procesa el formulario y guarda el libro
-    @PostMapping
-    public String saveBook(@ModelAttribute Book book) {
-        // Guardar en la base de datos...
-        return "redirect:/books";
-    }
-     */
+
+
+
+
+    //CRUD
+    // GET forms and views
+    // POST resources (i.e. book)
+    // GET resources (book, books...)
+    // PUT/PATCH resources
+    // DELETE resources
+    // private methods
+
 }
