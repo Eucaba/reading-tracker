@@ -26,10 +26,35 @@ public class Translator {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String lastName;
 
     //// Junction tables
     @ManyToMany(mappedBy = "translators")
     private Set<Book> books = new HashSet<>();
+
+    /* Checks whether a translator is an empty placeholder
+    (used to initialize DTO) or not. */
+    public boolean isPlaceholder()
+    {
+        boolean isPlaceholder;
+
+        if (this.name == null)
+        {
+            isPlaceholder = true;
+        }
+        else
+        {
+            if (this.name.isBlank())
+            {
+                isPlaceholder = true;
+            }
+            else
+            {
+                isPlaceholder = false;
+            }
+        }
+
+        return isPlaceholder;
+    }
 }

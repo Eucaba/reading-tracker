@@ -69,4 +69,35 @@ public class Book {
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Reading> readings = new HashSet<>();
+
+    /* Basic existing book constructor */
+    public Book(UUID id, String title, String isbn, String publisher, LocalDate publicationDate, BookFormat format,
+                int pages, Set<Author> authors, Set<Translator> translators, Set<BookGenre> genres)
+    {
+        this.id = id;
+        this.title = title;
+        this.isbn = isbn;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.format = format;
+        this.pages = pages;
+        this.authors = authors;
+        this.translators = translators;
+        this.genres = genres;
+    }
+
+    /* Basic non-yet-existing book constructor */
+    public Book(String title, String isbn, String publisher, LocalDate publicationDate, BookFormat format,
+                int pages, Set<Author> authors, Set<Translator> translators, Set<BookGenre> genres)
+    {
+        this.title = title;
+        this.isbn = isbn;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.format = format;
+        this.pages = pages;
+        this.authors = authors;
+        this.translators = translators;
+        this.genres = genres;
+    }
 }
